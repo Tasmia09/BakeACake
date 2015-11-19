@@ -1,0 +1,21 @@
+
+
+.heading{
+
+	text-align: center;
+	color: #CC3300;
+}
+
+.navbar-header{
+	color: green;
+}
+.lee{
+	color:red;
+}
+
+
+/* prevent from blocking 
+*content behind nav bar*/
+/*body { 
+    padding-top: 65px; 
+}*/
