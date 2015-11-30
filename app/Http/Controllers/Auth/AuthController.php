@@ -23,6 +23,10 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+
+    protected $redirectPath= '/gallery';
+
+
     /**
      * Create a new authentication controller instance.
      *

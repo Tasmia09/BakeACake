@@ -13,8 +13,9 @@
            
            <li><a href="{{ url('/') }}">Home</a></li>
            <li><a href="{{ url('about') }}">About</a></li>
-           <li><a href="#contact">Contact</a></li>
+           <li><a href="{{ url('contact') }}">Contact</a></li>
            <li><a href="{{ url('gallery') }}">Gallery</a></li>
+            <li><a href="{{ route('blogs.index') }}">Write Blog</a></li>
 
           </ul>      
 
@@ -28,7 +29,7 @@
 @section('body')
 
 <h1>Editing "{{ $image->title }}"</h1>
-<p class="lead">Edit and save this image below, or <a href="{{ route('images.index') }}">go back to all images.</a></p>
+<p class="lead">Edit and save this product below, or <a href="{{ route('images.index') }}">go back to all products.</a></p>
 <hr>
 
 @include('partials.alerts.errors')
@@ -45,11 +46,21 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('price', 'Price:', ['class' => 'control-label']) !!}
+    {!! Form::text('price', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::label('flavor', 'Flavor:', ['class' => 'control-label']) !!}
+    {!! Form::text('flavor', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
-{!! Form::submit('Update Image', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Update Product', ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
 

@@ -13,9 +13,23 @@
 	color:red;
 }
 
+.authD{
+	text-align: right;
+}
+
+
+
+.photo{
+
+	padding-top: 50px;
+}
+
+
 
 /* prevent from blocking 
 *content behind nav bar*/
 /*body { 
     padding-top: 65px; 
 }*/
+
+

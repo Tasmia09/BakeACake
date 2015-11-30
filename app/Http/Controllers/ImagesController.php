@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\ImageRequest;
 use App\Http\Controllers\Controller;
 use App\Image;
+use App\Photo;
 use Session;
 
 class ImagesController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,17 +49,12 @@ class ImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
         //
         //dd($request->all());
 
-         $this->validate($request, [
-        'title' => 'required',
-        'description' => 'required'
-]);
-
-        $input = $request->all();
+         $input = $request->all();
 
         Image::create($input);
 
@@ -74,6 +76,31 @@ class ImagesController extends Controller
 
         $image = Image::findOrFail($id);
         return view('images.show')->withImage($image);
+
+        /*$image= Image::locatedAt($title,$flavor)->first();
+        
+        return view('images.show',compact('image'));*/
+        //return Image::where(compact('title','flavor'))->first();
+    }
+
+
+    public function addPhoto($id, Request $request){
+
+        $file = $request->file('file');
+
+        $name=time().$file->getClientOriginalName();
+
+        $file->move('image/photos',$name);
+
+        $image = Image::findOrFail($id)->first();
+
+        $image->image()->create(['path'=> "/image/photos/{$name}"]);
+
+        /*$image= Image::locatedAt($title,$flavor)->first();
+
+        $image->photos()->create(['path'=> "/image/photos/{$name}"]);
+*/
+        return 'Done';
     }
 
     /**
